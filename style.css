@@ -6,10 +6,10 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --cream: #f5f2ed;
+  --cream: #ffffff;
   --ink: #141210;
-  --warm-mid: #8a7f74;
-  --accent: #c5a882;
+  --warm-mid: #787878;
+  --accent: #bcbcbc;
   --border: rgba(20,18,16,0.1);
   --font-display: 'Poppins', Helvetica, sans-serif;
   --font-body: 'Poppins', sans-serif;
@@ -63,7 +63,7 @@ nav {
   z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
   padding: 22px 48px;
-  background: rgba(245,242,237,0.85);
+  background: white;
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   transition: padding 0.3s ease;
@@ -77,15 +77,14 @@ nav {
   font-family: var(--font-display);
   font-size: 22px;
   font-weight: 500;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.2em;
   line-height: 1;
 }
 .nav-logo .logo-name {
   font-family: var(--font-body);
   font-size: 11px;
   font-weight: 300;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: 0.05em;
   color: var(--warm-mid);
 }
 
@@ -160,7 +159,7 @@ nav {
 }
 .mobile-nav-overlay a {
   font-family: var(--font-display);
-  font-size: 42px;
+  font-size: 20px;
   font-weight: 300;
   letter-spacing: -0.02em;
   color: var(--ink);
@@ -319,10 +318,8 @@ nav {
 /* ---- MARQUEE ---- */
 .marquee-bar {
   overflow: hidden;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
   padding: 14px 0;
-  background: var(--ink);
+  background: transparent;
   color: var(--cream);
 }
 .marquee-track {
@@ -341,7 +338,7 @@ nav {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   white-space: nowrap;
-  color: rgba(245,242,237,0.6);
+  color: black;
 }
 .marquee-item .dot { color: var(--accent); }
 
@@ -401,8 +398,8 @@ nav {
 
 .project-thumb {
   width: 100%;
-  aspect-ratio: 4/3;
-  background: #e8e4de;
+  aspect-ratio: 1/1;
+  background: #dadada;
   position: relative;
   overflow: hidden;
 }
@@ -421,11 +418,6 @@ nav {
   align-items: center;
   justify-content: center;
 }
-
-.thumb-1 { background: linear-gradient(135deg, #e8e4de 60%, #d4c8b8); }
-.thumb-2 { background: linear-gradient(160deg, #ddd8d0 40%, #c9bfaf); }
-.thumb-3 { background: linear-gradient(200deg, #e0dbd5 50%, #cdc5b8); }
-.thumb-4 { background: linear-gradient(110deg, #dbd5ce 45%, #c8bfb2); }
 
 .thumb-icon {
   width: 48px; height: 48px;
@@ -489,7 +481,7 @@ nav {
   border-top: 1px solid var(--border);
   display: grid;
   grid-template-columns: 1fr 1.4fr;
-  gap: 80px;
+  gap: 40px;
   align-items: center;
 }
 
@@ -497,34 +489,27 @@ nav {
 
 .about-photo-frame {
   width: 100%;
-  max-width: 380px;
+  max-width: 400px;
   aspect-ratio: 3/4;
-  background: #e0dbd4;
   position: relative;
   overflow: hidden;
+  background-image: url("Work\ in\ Progress\ 1.JPG");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .about-photo-frame::before {
   content: '';
   position: absolute;
-  inset: -1px;
-  border: 1px solid var(--accent);
   transform: translate(10px, 10px);
   z-index: 0;
   pointer-events: none;
 }
 .about-photo-inner {
   width: 100%; height: 100%;
-  background: linear-gradient(160deg, #ddd9d3 0%, #c8c0b6 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.about-initials {
-  font-family: var(--font-display);
-  font-size: 80px;
-  font-weight: 300;
-  color: rgba(20,18,16,0.12);
-  letter-spacing: -0.05em;
 }
 
 .about-heading {
