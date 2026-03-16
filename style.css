@@ -182,11 +182,15 @@ nav {
 /* ---- HERO ---- */
 .hero {
   min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   padding: 140px 48px 100px;
   position: relative;
+  max-width: 860px;
+  margin: 0 auto;
 }
 .hero::after {
   content: '';
@@ -195,8 +199,6 @@ nav {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--border), transparent);
 }
-
-.hero-left { padding-right: 60px; }
 
 .hero-eyebrow {
   font-family: var(--font-mono);
@@ -225,26 +227,16 @@ nav {
   color: var(--ink);
   opacity: 0;
   animation: fadeUp 0.9s ease 0.25s forwards;
-}
-.hero-headline em {
-  font-style: italic;
-  color: var(--warm-mid);
-}
-
-.hero-right {
-  padding-left: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  opacity: 0;
-  animation: fadeUp 0.9s ease 0.45s forwards;
+  padding-bottom: clamp(10px, 2vw, 30px)
 }
 
 .hero-bio {
   font-size: 15px;
   line-height: 1.75;
   color: #4a4540;
-  max-width: 480px;
+  max-width: 500px;
+  opacity: 0;
+  animation: fadeUp 0.9s ease 0.45s forwards;
 }
 .hero-bio strong {
   font-weight: 400;
@@ -254,7 +246,7 @@ nav {
 }
 
 .hero-cta {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 12px;
   background: var(--ink);
@@ -266,10 +258,15 @@ nav {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   transition: background 0.3s ease, color 0.3s ease, gap 0.3s ease;
-  align-self: flex-start;
+  align-self: center;
+  opacity: 0;
+  animation: fadeUp 0.9s ease 0.55s forwards;
+  margin-top: clamp(10px, 3vw, 24px);
+  border-radius: 40px;
 }
+
 .hero-cta:hover {
-  background: var(--accent);
+  background: #d9d9d9;
   color: var(--ink);
   gap: 18px;
 }
