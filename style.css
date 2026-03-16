@@ -60,7 +60,7 @@ body::before {
 /* ---- NAV ---- */
 nav {
   position: fixed; top: 0; left: 0; right: 0;
-  z-index: 100;
+  z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
   padding: 22px 48px;
   background: white;
@@ -120,7 +120,7 @@ nav {
   display: none;
   flex-direction: column;
   justify-content: center;
-  gap: 5px;
+  gap: 3px;
   width: 36px; height: 36px;
   background: none;
   border: none;
@@ -135,9 +135,9 @@ nav {
   transition: transform 0.35s ease, opacity 0.35s ease, width 0.35s ease;
   transform-origin: center;
 }
-.nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
 .nav-hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
-.nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-4px) rotate(-45deg); }
 
 /* ---- MOBILE NAV OVERLAY ---- */
 .mobile-nav-overlay {
