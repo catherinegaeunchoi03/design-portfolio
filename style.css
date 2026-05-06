@@ -830,7 +830,7 @@ footer {
   }
   .hero-headline { font-size: clamp(40px, 11vw, 60px); }
   .hero-bio { font-size: 14px; }
-  .hero-cta { width: 100%; justify-content: center; padding: 16px 24px; }
+  .hero-cta { width: auto; max-width: 220px; justify-content: center; padding: 12px 20px; align-self: center; }
 
   #projects { padding: 60px 20px; }
   .projects-grid { grid-template-columns: 1fr; gap: 36px; }
