@@ -540,7 +540,6 @@ nav {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
-  margin-bottom: 64px;
   align-items: end;
 }
 
