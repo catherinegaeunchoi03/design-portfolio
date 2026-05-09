@@ -294,9 +294,23 @@ nav {
 }
 
 @media (max-width: 600px) {
-  .hero { text-align: center; }
-  .hero-content { align-items: center; }
-  .hero-cta { align-self: center; }
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 100px 24px 80px;
+  }
+  .hero-content {
+    align-items: center;
+    order: 2; 
+  }
+  .hero-image {
+    order: 1;  
+    max-width: 280px;
+    width: 100%;
+  }
+  .hero-cta {
+    align-self: center;
+  }
 }
 
 /* Scroll indicator */
