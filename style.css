@@ -311,8 +311,15 @@ nav {
   }
   .hero-image {
     order: 1;  
-    max-width: 280px;
+    max-width: 100%;
     width: 100%;
+
+  }
+  .hero-image img {
+    height: 350px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 12px;
   }
   .hero-cta {
     align-self: center;
@@ -519,86 +526,6 @@ nav {
 }
 .project-link:hover { gap: 10px; border-color: var(--accent); color: var(--warm-mid); }
 
-/* ---- ABOUT ---- */
-#about {
-  padding: 100px 48px;
-  border-top: 1px solid var(--border);
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 40px;
-  align-items: center;
-}
-
-.about-left { position: relative; }
-
-.about-photo-frame {
-  width: 100%;
-  max-width: 400px;
-  aspect-ratio: 3/4;
-  position: relative;
-  overflow: hidden;
-  background-image: url("Work\ in\ Progress\ 1.JPG");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-.about-photo-frame::before {
-  content: '';
-  position: absolute;
-  transform: translate(10px, 10px);
-  z-index: 0;
-  pointer-events: none;
-}
-.about-photo-inner {
-  width: 100%; height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.about-heading {
-  font-family: var(--font-display);
-  font-size: clamp(28px, 3.5vw, 44px);
-  font-weight: 300;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  margin: 16px 0 24px;
-}
-.about-heading em { font-style: italic; color: var(--warm-mid); }
-
-.about-text {
-  font-size: 14.5px;
-  line-height: 1.8;
-  color: #4a4540;
-  margin-bottom: 16px;
-}
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--border);
-  margin-top: 40px;
-  border: 1px solid var(--border);
-}
-.skill-item {
-  background: var(--cream);
-  padding: 16px 18px;
-  font-size: 11px;
-  font-weight: 300;
-  letter-spacing: 0.08em;
-  color: var(--ink);
-  transition: background 0.3s ease, color 0.3s ease;
-}
-.skill-item:hover { background: var(--ink); color: var(--cream); }
-.skill-item .skill-dot {
-  display: inline-block;
-  width: 4px; height: 4px;
-  border-radius: 50%;
-  background: var(--accent);
-  margin-right: 8px;
-  vertical-align: middle;
-}
 
 /* ---- SERVICES ---- */
 #services {
@@ -619,6 +546,14 @@ nav {
   line-height: 1.8;
   color: #4a4540;
   max-width: 420px;
+}
+
+.about-text {
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: #4a4540;
+  margin-bottom: 16px;
+  margin-top: 16px;
 }
 
 .services-list {
