@@ -540,10 +540,10 @@ nav {
 
 .services-header {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 60px;
   align-items: end;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .services-header .projects-title {
