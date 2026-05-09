@@ -532,6 +532,7 @@ nav {
   grid-template-columns: 1fr 1fr;
   gap: 60px;
   align-items: end;
+  margin-bottom: 60px;
 }
 
 .services-intro {
@@ -544,8 +545,8 @@ nav {
   font-size: 14.5px;
   line-height: 1.8;
   color: #4a4540;
-  margin-bottom: 16px;
-  margin-top: 16px;
+  margin-bottom: 20px;
+  margin-top: 0px;
 }
 
 .services-list {
