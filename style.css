@@ -183,14 +183,15 @@ nav {
 .hero {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  text-align: center;
+  justify-content: space-between;
+  text-align: left;
   padding: 140px 48px 100px;
   position: relative;
-  max-width: 860px;
+  max-width: 1200px;
   margin: 0 auto;
+  gap: clamp(24px, 5vw, 64px);
 }
 .hero::after {
   content: '';
@@ -199,7 +200,13 @@ nav {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--border), transparent);
 }
-
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  max-width: 560px;
+  flex: 1;
+}
 .hero-eyebrow {
   font-family: var(--font-mono);
   font-size: 10px;
@@ -258,7 +265,7 @@ nav {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   transition: background 0.3s ease, color 0.3s ease, gap 0.3s ease;
-  align-self: center;
+  align-self: flex-start;
   opacity: 0;
   animation: fadeUp 0.9s ease 0.55s forwards;
   margin-top: clamp(10px, 3vw, 24px);
@@ -271,6 +278,26 @@ nav {
   gap: 18px;
 }
 .hero-cta .arrow { font-size: 14px; }
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 480px;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .hero { text-align: center; }
+  .hero-content { align-items: center; }
+  .hero-cta { align-self: center; }
+}
 
 /* Scroll indicator */
 .scroll-hint {
