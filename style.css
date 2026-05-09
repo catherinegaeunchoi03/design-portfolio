@@ -532,7 +532,7 @@ nav {
   grid-template-columns: 1fr 1fr;
   gap: 60px;
   align-items: end;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 
 .services-header .projects-title {
@@ -551,6 +551,10 @@ nav {
   color: #4a4540;
   margin-bottom: 20px;
   margin-top: 0px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .services-list {
