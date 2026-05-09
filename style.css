@@ -442,7 +442,7 @@ nav {
 
 .project-thumb {
   width: 100%;
-  aspect-ratio: 1/1;
+  aspect-ratio: 4/3;
   background: #dadada;
   position: relative;
   overflow: hidden;
