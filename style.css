@@ -829,6 +829,8 @@ footer {
   .projects-grid { grid-template-columns: 1fr; gap: 36px; }
   .projects-header { margin-bottom: 36px; }
   .projects-title { font-size: clamp(28px, 8vw, 38px); }
+  .project-card {width: 100%; max-width: 100%; overflow: hidden;}
+  .project-thumb {width: 100%; max-width: 100%; height: auto;}
 
   #about { padding: 60px 20px; gap: 36px; }
   .about-photo-frame { max-width: 100%; }
@@ -849,4 +851,4 @@ footer {
 
   footer { padding: 24px 20px; gap: 12px; }
   .footer-socials { gap: 20px; }
-}
+  }
