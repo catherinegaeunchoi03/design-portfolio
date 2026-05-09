@@ -551,10 +551,6 @@ nav {
   color: #4a4540;
   margin-bottom: 20px;
   margin-top: 0px;
-
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .services-list {
