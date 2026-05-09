@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Era Cap Co. — Catherine Gaeun Choi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #ffffff;
+      --ink: #141210;
+      --warm-mid: #787878;
+      --accent: #bcbcbc;
+      --border: rgba(20,18,16,0.1);
+      --font-display: 'Poppins', Helvetica, sans-serif;
+      --font-body: 'Poppins', sans-serif;
+      --font-mono: 'Poppins', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ---- CURSOR ---- */
+    .cursor {
+      position: fixed;
+      width: 8px; height: 8px;
+      background: var(--ink);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease;
+      mix-blend-mode: multiply;
+    }
+    .cursor.hover {
+      width: 40px; height: 40px;
+      background: var(--accent);
+      opacity: 0.6;
+    }
+
+    /* ---- NAV ---- */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 48px;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      transition: padding 0.3s ease;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--ink);
+    }
+    .nav-logo .logo-mark {
+      font-family: var(--font-display);
+      font-size: 22px; font-weight: 500;
+      letter-spacing: -0.2em; line-height: 1;
+    }
+    .nav-logo .logo-name {
+      font-size: 11px; font-weight: 300;
+      letter-spacing: 0.05em; color: var(--warm-mid);
+    }
+    .nav-back {
+      font-family: var(--font-mono);
+      font-size: 10px; letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+      transition: color 0.3s ease, gap 0.3s ease;
+    }
+    .nav-back:hover { color: var(--ink); gap: 12px; }
+    .nav-back .arrow { font-size: 14px; }
+
+    /* ---- CASE STUDY HERO ---- */
+    .cs-hero {
+      padding: 160px 48px 80px;
+      border-bottom: 1px solid var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .cs-label {
+      font-family: var(--font-mono);
+      font-size: 9px; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--warm-mid);
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 28px;
+      opacity: 0; animation: fadeUp 0.7s ease 0.1s forwards;
+    }
+    .cs-label::before {
+      content: ''; display: inline-block;
+      width: 20px; height: 1px; background: var(--accent);
+    }
+
+    .cs-title {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 6vw, 78px);
+      font-weight: 300; line-height: 1.05;
+      letter-spacing: -0.025em;
+      margin-bottom: 32px;
+      opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    .cs-meta {
+      display: flex; gap: 48px; flex-wrap: wrap;
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 48px;
+      opacity: 0; animation: fadeUp 0.8s ease 0.35s forwards;
+    }
+    .cs-meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .cs-meta-label {
+      font-family: var(--font-mono);
+      font-size: 8px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--warm-mid);
+    }
+    .cs-meta-value { font-size: 13px; font-weight: 400; }
+
+    .cs-summary {
+      font-size: 18px; font-weight: 300;
+      line-height: 1.75; color: #4a4540;
+      max-width: 680px;
+      opacity: 0; animation: fadeUp 0.8s ease 0.45s forwards;
+    }
+
+    /* ---- HERO IMAGE ---- */
+    .cs-hero-img {
+      width: 100%; max-width: 1100px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+    .cs-hero-img img {
+      width: 100%; display: block;
+      aspect-ratio: 16/7; object-fit: cover;
+      background: #f0ede8;
+    }
+    .img-caption {
+      font-family: var(--font-mono);
+      font-size: 9px; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--warm-mid);
+      padding: 12px 48px;
+    }
+
+    /* ---- CONTENT SECTIONS ---- */
+    .cs-body {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .cs-section {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 60px;
+      padding: 72px 48px;
+      border-bottom: 1px solid var(--border);
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .cs-section.visible { opacity: 1; transform: translateY(0); }
+
+    .cs-section-label {
+      font-family: var(--font-mono);
+      font-size: 9px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--warm-mid);
+      padding-top: 4px;
+      position: sticky; top: 90px; align-self: start;
+    }
+
+    .cs-section-content h2 {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.5vw, 30px);
+      font-weight: 300; letter-spacing: -0.015em;
+      line-height: 1.2; margin-bottom: 20px;
+    }
+    .cs-section-content p {
+      font-size: 15px; line-height: 1.85;
+      color: #4a4540; margin-bottom: 16px;
+    }
+    .cs-section-content p:last-child { margin-bottom: 0; }
+
+    /* ---- CONSTRAINT TAGS ---- */
+    .tag-row {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 24px;
+    }
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 9px; letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      padding: 6px 14px; color: var(--warm-mid);
+    }
+
+    /* ---- PROCESS STEPS ---- */
+    .process-steps {
+      display: flex; flex-direction: column; gap: 0;
+      margin-top: 32px;
+      border: 1px solid var(--border);
+    }
+    .process-step {
+      display: grid; grid-template-columns: 48px 1fr;
+      gap: 24px; padding: 24px 28px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s ease;
+    }
+    .process-step:last-child { border-bottom: none; }
+    .process-step:hover { background: #faf9f7; }
+    .step-num {
+      font-family: var(--font-mono);
+      font-size: 9px; letter-spacing: 0.15em;
+      color: var(--accent); padding-top: 2px;
+    }
+    .step-body h4 {
+      font-size: 14px; font-weight: 400;
+      margin-bottom: 6px; letter-spacing: -0.01em;
+    }
+    .step-body p {
+      font-size: 13px; line-height: 1.7;
+      color: #7a726a; margin-bottom: 0;
+    }
+
+    /* ---- IMAGE GRID ---- */
+    .img-grid {
+      display: grid;
+      gap: 2px;
+      margin-top: 32px;
+    }
+    .img-grid.two-col { grid-template-columns: 1fr 1fr; }
+    .img-grid.three-col { grid-template-columns: 1fr 1fr 1fr; }
+    .img-grid.full { grid-template-columns: 1fr; }
+
+    .img-block { display: flex; flex-direction: column; gap: 0; }
+    .img-block img {
+      width: 100%; display: block;
+      object-fit: cover; background: #f0ede8;
+    }
+    .img-block img.tall { aspect-ratio: 4/5; }
+    .img-block img.wide { aspect-ratio: 16/9; }
+    .img-block img.square { aspect-ratio: 1/1; }
+    .img-block-caption {
+      font-family: var(--font-mono);
+      font-size: 9px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--warm-mid);
+      padding: 10px 0 0;
+    }
+
+    /* ---- BEFORE / AFTER ---- */
+    .before-after {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 32px;
+    }
+    .ba-block { display: flex; flex-direction: column; }
+    .ba-label {
+      font-family: var(--font-mono);
+      font-size: 8px; letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 8px 12px;
+      background: var(--ink); color: var(--cream);
+      display: inline-block; align-self: flex-start;
+      margin-bottom: 2px;
+    }
+    .ba-label.after { background: var(--warm-mid); }
+    .ba-block img {
+      width: 100%; display: block;
+      aspect-ratio: 16/10; object-fit: cover;
+      background: #f0ede8;
+    }
+    .ba-caption {
+      font-family: var(--font-mono);
+      font-size: 9px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--warm-mid);
+      padding: 10px 0 0;
+    }
+
+    /* ---- OUTCOME STATS ---- */
+    .outcome-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--border);
+      margin-top: 32px;
+    }
+    .stat-item {
+      padding: 32px 28px;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 300; letter-spacing: -0.02em;
+      line-height: 1; margin-bottom: 8px;
+    }
+    .stat-desc {
+      font-size: 12px; line-height: 1.6;
+      color: var(--warm-mid);
+    }
+
+    /* ---- REFLECTION BLOCKQUOTE ---- */
+    .cs-reflection {
+      border-left: 1px solid var(--ink);
+      padding: 4px 0 4px 28px;
+      margin-top: 28px;
+    }
+    .cs-reflection p {
+      font-family: var(--font-display);
+      font-size: 17px; font-weight: 300;
+      line-height: 1.7; font-style: italic;
+      color: var(--ink) !important;
+    }
+
+    /* ---- NEXT PROJECT ---- */
+    .cs-next {
+      max-width: 1100px; margin: 0 auto;
+      padding: 72px 48px;
+      display: flex; justify-content: space-between;
+      align-items: center;
+    }
+    .cs-next-label {
+      font-family: var(--font-mono);
+      font-size: 9px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--warm-mid);
+      margin-bottom: 10px;
+    }
+    .cs-next-title {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.5vw, 32px);
+      font-weight: 300; letter-spacing: -0.015em;
+    }
+    .cs-next-link {
+      font-family: var(--font-mono);
+      font-size: 10px; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--ink);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 10px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: gap 0.3s ease, border-color 0.3s ease;
+      white-space: nowrap; align-self: flex-end;
+    }
+    .cs-next-link:hover { gap: 16px; border-color: var(--accent); }
+
+    /* ---- FOOTER ---- */
+    footer {
+      padding: 32px 48px;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-copy {
+      font-family: var(--font-mono);
+      font-size: 10px; letter-spacing: 0.12em; color: var(--warm-mid);
+    }
+    .footer-socials { display: flex; gap: 28px; }
+    .footer-socials a {
+      font-family: var(--font-mono);
+      font-size: 10px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--warm-mid);
+      text-decoration: none; transition: color 0.3s ease;
+    }
+    .footer-socials a:hover { color: var(--ink); }
+
+    /* ---- ANIMATIONS ---- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---- TABLET ---- */
+    @media (max-width: 900px) {
+      nav { padding: 18px 28px; }
+      .cs-hero { padding: 130px 28px 60px; }
+      .cs-hero-img img { aspect-ratio: 16/9; }
+      .img-caption { padding: 12px 28px; }
+      .cs-section { grid-template-columns: 1fr; gap: 24px; padding: 52px 28px; }
+      .cs-section-label { position: static; }
+      .before-after { grid-template-columns: 1fr; gap: 24px; }
+      .outcome-stats { grid-template-columns: 1fr 1fr; }
+      .outcome-stats .stat-item:nth-child(2) { border-right: none; }
+      .outcome-stats .stat-item:nth-child(3) { border-top: 1px solid var(--border); border-right: none; grid-column: 1 / -1; }
+      .cs-next { flex-direction: column; align-items: flex-start; gap: 24px; padding: 52px 28px; }
+      footer { padding: 28px; flex-direction: column; gap: 16px; text-align: center; }
+    }
+
+    /* ---- MOBILE ---- */
+    @media (max-width: 600px) {
+      body { cursor: auto; }
+      .cursor { display: none; }
+      nav { padding: 16px 20px; }
+      .nav-logo .logo-name { display: none; }
+      .cs-hero { padding: 110px 20px 48px; }
+      .cs-meta { gap: 24px; }
+      .cs-summary { font-size: 16px; }
+      .img-caption { padding: 10px 20px; }
+      .cs-section { padding: 40px 20px; gap: 16px; }
+      .img-grid.two-col,
+      .img-grid.three-col { grid-template-columns: 1fr; }
+      .outcome-stats { grid-template-columns: 1fr; }
+      .outcome-stats .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .outcome-stats .stat-item:last-child { border-bottom: none; }
+      .cs-next { padding: 40px 20px; }
+      footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <div class="logo-mark">cGc</div>
+      <div class="logo-name">Catherine Gaeun Choi</div>
+    </a>
+    <a href="index.html#projects" class="nav-back">
+      <span class="arrow">←</span> Back to work
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="cs-hero">
+    <div class="cs-label">01 — Product &amp; Web Design</div>
+    <h1 class="cs-title">New Era Cap Co.</h1>
+    <div class="cs-meta">
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Role</span>
+        <span class="cs-meta-value">UX/UI &amp; Web Intern</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Timeline</span>
+        <span class="cs-meta-value">2023 – 2025</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Platform</span>
+        <span class="cs-meta-value">Shopify (UK &amp; EU)</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Tools</span>
+        <span class="cs-meta-value">Figma · Shopify · HTML/CSS · GA4</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Focus</span>
+        <span class="cs-meta-value">E-commerce UX · Campaign Design · Web Optimisation</span>
+      </div>
+    </div>
+    <p class="cs-summary">
+      Homepage redesign, campaign execution, and data-informed performance optimisation
+      across New Era's UK and EU Shopify storefronts — translating brand strategy into
+      live digital experiences that balance commercial goals with user clarity.
+    </p>
+  </div>
+
+  <!-- HERO IMAGE -->
+  <div class="cs-hero-img">
+    <img src="img/new-era-hero.jpg" alt="New Era Cap Co. homepage — redesigned hero" class="wide" />
+    <p class="img-caption">New Era Cap Co. — UK storefront homepage, redesigned hero section</p>
+  </div>
+
+  <div class="cs-body">
+
+    <!-- 01 BRIEF -->
+    <div class="cs-section">
+      <div class="cs-section-label">01 — The brief</div>
+      <div class="cs-section-content">
+        <h2>What problem were we solving?</h2>
+        <p>
+          New Era's UK and EU storefronts were running on an ageing Shopify theme with
+          inconsistent campaign rollouts and a homepage that prioritised product categories
+          over brand storytelling. With seasonal campaigns driving the majority of traffic,
+          the existing setup made it difficult to launch quickly or maintain visual consistency
+          across markets.
+        </p>
+        <p>
+          My brief was to improve the homepage experience, build a repeatable system for
+          campaign landing pages, and make front-end amendments that brought the live site
+          closer to brand standards — all within the constraints of the existing Shopify CMS
+          without custom development resource.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Shopify CMS constraints</span>
+          <span class="tag">No custom dev resource</span>
+          <span class="tag">Dual-market (UK + EU)</span>
+          <span class="tag">Strict brand guidelines</span>
+          <span class="tag">Fast campaign turnaround</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 PROCESS -->
+    <div class="cs-section">
+      <div class="cs-section-label">02 — Process</div>
+      <div class="cs-section-content">
+        <h2>How I approached it</h2>
+        <p>
+          Working within Shopify's theme editor meant every design decision had to account
+          for what was technically possible without breaking the existing template. I mapped
+          the current homepage journey first — identifying where users dropped off, which
+          blocks were underperforming, and where brand inconsistencies were most visible.
+        </p>
+        <p>
+          From there I designed iteratively — proposing layouts in Figma, getting sign-off,
+          then implementing directly in the theme editor with HTML/CSS amendments where the
+          native controls weren't sufficient.
+        </p>
+
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="step-num">01</div>
+            <div class="step-body">
+              <h4>Audit existing storefronts</h4>
+              <p>Reviewed live UK and EU homepages, identified hierarchy issues, inconsistent campaign blocks, and brand misalignment between markets.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">02</div>
+            <div class="step-body">
+              <h4>Map user journey entry points</h4>
+              <p>Used GA4 data to understand where homepage visitors were landing from and what they were doing — most traffic was campaign-driven, not organic browse.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">03</div>
+            <div class="step-body">
+              <h4>Redesign in Figma, propose to stakeholders</h4>
+              <p>Designed revised homepage layouts and campaign page templates in Figma, presenting rationale to the wider team before implementation.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">04</div>
+            <div class="step-body">
+              <h4>Implement via Shopify theme editor + HTML/CSS</h4>
+              <p>Applied approved designs directly in the CMS — using custom theme blocks and front-end code amendments to bridge the gap between design intent and native Shopify controls.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">05</div>
+            <div class="step-body">
+              <h4>Review and iterate post-launch</h4>
+              <p>Monitored performance after each campaign went live, feeding findings back into future design iterations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 HOMEPAGE REDESIGN -->
+    <div class="cs-section">
+      <div class="cs-section-label">03 — Homepage redesign</div>
+      <div class="cs-section-content">
+        <h2>Redesigning the primary entry point</h2>
+        <p>
+          The original homepage led with a static product category grid — visually flat and
+          disconnected from the brand's campaign-led identity. I redesigned the hero block to
+          lead with campaign creative, using a full-width editorial layout that put the seasonal
+          story front and centre.
+        </p>
+        <p>
+          Secondary sections were restructured to guide users from editorial context into
+          product discovery, reflecting how the majority of visitors were actually arriving
+          — via campaign traffic, already primed for a specific drop or collection.
+        </p>
+
+        <div class="before-after">
+          <div class="ba-block">
+            <span class="ba-label">Before</span>
+            <img src="img/new-era-homepage-before.jpg" alt="Homepage before redesign" />
+            <p class="ba-caption">Original homepage — static category grid, no campaign hierarchy</p>
+          </div>
+          <div class="ba-block">
+            <span class="ba-label after">After</span>
+            <img src="img/new-era-homepage-after.jpg" alt="Homepage after redesign" />
+            <p class="ba-caption">Redesigned homepage — campaign-led hero, clearer editorial flow</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 CAMPAIGN PAGES -->
+    <div class="cs-section">
+      <div class="cs-section-label">04 — Campaign pages</div>
+      <div class="cs-section-content">
+        <h2>Building a repeatable campaign template</h2>
+        <p>
+          Each campaign previously required rebuilding a landing page from scratch — slow,
+          inconsistent, and dependent on whoever happened to be available. I designed and
+          built a modular campaign landing page template as a custom Shopify theme block,
+          allowing the team to launch new campaigns by swapping content rather than rebuilding
+          structure.
+        </p>
+        <p>
+          The template was flexible enough to handle different campaign types — product
+          launches, seasonal drops, collaborations — while maintaining consistent visual
+          hierarchy and brand standards across UK and EU.
+        </p>
+
+        <div class="img-grid two-col">
+          <div class="img-block">
+            <img src="img/new-era-campaign-1.jpg" alt="Campaign landing page example 1" class="wide" />
+            <p class="img-block-caption">Campaign template — product launch variant</p>
+          </div>
+          <div class="img-block">
+            <img src="img/new-era-campaign-2.jpg" alt="Campaign landing page example 2" class="wide" />
+            <p class="img-block-caption">Campaign template — seasonal collection variant</p>
+          </div>
+        </div>
+
+        <div class="img-grid full" style="margin-top: 2px;">
+          <div class="img-block">
+            <img src="img/new-era-campaign-3.jpg" alt="Campaign landing page full view" class="wide" />
+            <p class="img-block-caption">Full-width campaign page — EU storefront</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 FRONT-END WORK -->
+    <div class="cs-section">
+      <div class="cs-section-label">05 — Front-end work</div>
+      <div class="cs-section-content">
+        <h2>Closing the gap between design and live</h2>
+        <p>
+          Shopify's native theme editor has real limits — spacing, typography, and layout
+          controls that stop short of what a precise design system requires. Where the CMS
+          fell short, I made direct HTML and CSS amendments to bring the live site into
+          alignment with brand standards.
+        </p>
+        <p>
+          This included custom theme block development using Shopify's Liquid templating
+          language, front-end fixes for cross-browser rendering issues, and responsive
+          layout adjustments to ensure consistency across mobile and desktop — particularly
+          important given a majority of traffic arrived on mobile.
+        </p>
+
+        <div class="img-grid three-col">
+          <div class="img-block">
+            <img src="img/new-era-frontend-1.jpg" alt="Custom theme block" class="square" />
+            <p class="img-block-caption">Custom theme block — product feature row</p>
+          </div>
+          <div class="img-block">
+            <img src="img/new-era-frontend-2.jpg" alt="Mobile responsive layout" class="square" />
+            <p class="img-block-caption">Mobile layout — responsive campaign hero</p>
+          </div>
+          <div class="img-block">
+            <img src="img/new-era-frontend-3.jpg" alt="Typography and spacing amendments" class="square" />
+            <p class="img-block-caption">Typography and spacing — CSS amendments</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 OUTCOME -->
+    <div class="cs-section">
+      <div class="cs-section-label">06 — Outcome</div>
+      <div class="cs-section-content">
+        <h2>What shipped and what it did</h2>
+        <p>
+          The redesigned homepage and campaign template system went live across both UK and
+          EU storefronts. The modular template was adopted for subsequent campaigns, reducing
+          production time per launch and improving consistency across markets.
+        </p>
+
+        <div class="outcome-stats">
+          <div class="stat-item">
+            <div class="stat-value">3+</div>
+            <div class="stat-desc">Campaigns launched using the template system I built</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">2</div>
+            <div class="stat-desc">Storefronts (UK + EU) updated with redesigned homepage</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">↓</div>
+            <div class="stat-desc">Reduced campaign page production time through reusable modular structure</div>
+          </div>
+        </div>
+
+        <p style="margin-top: 28px;">
+          Replace the placeholders above with your actual metrics once you pull the data —
+          even rough figures like "bounce rate decreased from X to Y on campaign pages" or
+          "average session duration increased" will strengthen this significantly.
+        </p>
+      </div>
+    </div>
+
+    <!-- 07 REFLECTION -->
+    <div class="cs-section">
+      <div class="cs-section-label">07 — Reflection</div>
+      <div class="cs-section-content">
+        <h2>What I'd do differently</h2>
+        <p>
+          Working within Shopify's constraints taught me a lot about designing for systems
+          rather than ideal conditions — every decision had to account for what the CMS could
+          actually render, which forced a kind of pragmatic rigour I wouldn't have developed
+          designing in isolation.
+        </p>
+        <p>
+          If I owned this project longer, I'd have pushed for more structured user testing
+          earlier in the process. Most decisions were informed by analytics and business
+          feedback rather than direct user insight — which worked, but left questions about
+          whether the hierarchy we chose truly matched how users were thinking, not just
+          how they were clicking.
+        </p>
+        <p>
+          I'd also have advocated for a more formal design system documentation from the
+          start — the template approach solved the immediate problem, but without documented
+          standards, variations crept in over time as other team members made edits.
+        </p>
+
+        <div class="cs-reflection">
+          <p>
+            "Designing within a CMS taught me that constraints aren't the enemy of good
+            design — they're a forcing function. The best solutions I found weren't despite
+            Shopify's limits, they were shaped by them."
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NEXT PROJECT -->
+  <div class="cs-next">
+    <div>
+      <p class="cs-next-label">Next project</p>
+      <h2 class="cs-next-title">House of Technology</h2>
+    </div>
+    <a href="house-of-technology.html" class="cs-next-link">
+      View case study →
+    </a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-copy">© 2026 Catherine Gaeun Choi. All rights reserved.</div>
+    <div class="footer-socials">
+      <a href="https://www.linkedin.com/in/gaeun-choi-cath0303">LinkedIn</a>
+      <a href="https://www.behance.net/gaeunchoi_cath">Behance</a>
+    </div>
+  </footer>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    const isMobileWidth = () => window.innerWidth <= 600;
+
+    document.addEventListener('mousemove', e => {
+      if (isMobileWidth()) return;
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top  = e.clientY + 'px';
+    });
+
+    document.querySelectorAll('a, button, .process-step').forEach(el => {
+      el.addEventListener('mouseenter', () => { if (!isMobileWidth()) cursor.classList.add('hover'); });
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.cs-section').forEach(el => revealObserver.observe(el));
+
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      const mobile = window.innerWidth <= 600;
+      const tablet = window.innerWidth <= 900;
+      const px = mobile ? '20px' : tablet ? '28px' : '48px';
+      const py = window.scrollY > 60 ? '12px' : mobile ? '16px' : tablet ? '18px' : '22px';
+      nav.style.padding = `${py} ${px}`;
+    });
+  </script>
+
+</body>
+</html>
