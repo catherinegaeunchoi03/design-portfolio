@@ -6,3 +6,314 @@
   <title>House of Technology. — Catherine Gaeun Choi</title>
   <link rel="icon" type="image/png" href="memoji3.png">
   <link rel="apple-touch-icon" href="memoji3.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #ffffff;
+      --ink: #141210;
+      --warm-mid: #787878;
+      --accent: #bcbcbc;
+      --border: rgba(20,18,16,0.1);
+      --font-display: 'Poppins', Helvetica, sans-serif;
+      --font-body: 'Poppins', sans-serif;
+      --font-mono: 'Poppins', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ---- CURSOR ---- */
+    .cursor {
+      position: fixed;
+      width: 8px; height: 8px;
+      background: var(--ink);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease;
+      mix-blend-mode: multiply;
+    }
+    .cursor.hover {
+      width: 40px; height: 40px;
+      background: var(--accent);
+      opacity: 0.6;
+    }
+
+    /* ---- NAV ---- */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 48px;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      transition: padding 0.3s ease;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--ink);
+    }
+    .nav-logo .logo-mark {
+      font-family: var(--font-display);
+      font-size: 22px; font-weight: 500;
+      letter-spacing: -0.2em; line-height: 1;
+    }
+    .nav-logo .logo-name {
+      font-size: 11px; font-weight: 300;
+      letter-spacing: 0.05em; color: var(--warm-mid);
+    }
+    .nav-back {
+      font-family: var(--font-mono);
+      font-size: 10px; letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+      transition: color 0.3s ease, gap 0.3s ease;
+    }
+    .nav-back:hover { color: var(--ink); gap: 12px; }
+    .nav-back .arrow { font-size: 14px; }
+
+    /* ---- CASE STUDY HERO ---- */
+    .cs-hero {
+      padding: 160px 48px 80px;
+      border-bottom: 1px solid var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .cs-label {
+      font-family: var(--font-mono);
+      font-size: 9px; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--warm-mid);
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 28px;
+      opacity: 0; animation: fadeUp 0.7s ease 0.1s forwards;
+    }
+    .cs-label::before {
+      content: ''; display: inline-block;
+      width: 20px; height: 1px; background: var(--accent);
+    }
+
+    .cs-title {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 6vw, 78px);
+      font-weight: 300; line-height: 1.05;
+      letter-spacing: -0.025em;
+      margin-bottom: 32px;
+      opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    .cs-meta {
+      display: flex; gap: 48px; flex-wrap: wrap;
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 48px;
+      opacity: 0; animation: fadeUp 0.8s ease 0.35s forwards;
+    }
+    .cs-meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .cs-meta-label {
+      font-family: var(--font-mono);
+      font-size: 8px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--warm-mid);
+    }
+    .cs-meta-value { font-size: 13px; font-weight: 400; }
+
+    .cs-summary {
+      font-size: 18px; font-weight: 300;
+      line-height: 1.75; color: #4a4540;
+      max-width: 680px;
+      opacity: 0; animation: fadeUp 0.8s ease 0.45s forwards;
+    }
+
+    /* ---- NEXT PROJECT ---- */
+    .cs-next {
+      max-width: 1100px; margin: 0 auto;
+      padding: 72px 48px;
+      display: flex; justify-content: space-between;
+      align-items: center;
+    }
+    .cs-next-label {
+      font-family: var(--font-mono);
+      font-size: 9px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--warm-mid);
+      margin-bottom: 10px;
+    }
+    .cs-next-title {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.5vw, 32px);
+      font-weight: 300; letter-spacing: -0.015em;
+    }
+    .cs-next-link {
+      font-family: var(--font-mono);
+      font-size: 10px; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--ink);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 10px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: gap 0.3s ease, border-color 0.3s ease;
+      white-space: nowrap; align-self: flex-end;
+    }
+    .cs-next-link:hover { gap: 16px; border-color: var(--accent); }
+
+    /* ---- FOOTER ---- */
+    footer {
+      padding: 32px 48px;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-copy {
+      font-family: var(--font-mono);
+      font-size: 10px; letter-spacing: 0.12em; color: var(--warm-mid);
+    }
+    .footer-socials { display: flex; gap: 28px; }
+    .footer-socials a {
+      font-family: var(--font-mono);
+      font-size: 10px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--warm-mid);
+      text-decoration: none; transition: color 0.3s ease;
+    }
+    .footer-socials a:hover { color: var(--ink); }
+
+    /* ---- ANIMATIONS ---- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---- TABLET ---- */
+    @media (max-width: 900px) {
+      nav { padding: 18px 28px; }
+      .cs-hero { padding: 130px 28px 60px; }
+      .cs-next { flex-direction: column; align-items: flex-start; gap: 24px; padding: 52px 28px; }
+      footer { padding: 28px; flex-direction: column; gap: 16px; text-align: center; }
+      .cs-confidential { padding: 72px 28px; }
+    }
+
+    /* ---- MOBILE ---- */
+    @media (max-width: 600px) {
+      body { cursor: auto; }
+      .cursor { display: none; }
+      nav { padding: 16px 20px; }
+      .nav-logo .logo-name { display: none; }
+      .cs-hero { padding: 110px 20px 48px; }
+      .cs-meta { gap: 24px; }
+      .cs-summary { font-size: 16px; }
+      .cs-confidential { padding: 60px 20px; min-height: 300px; }
+      .cs-next { padding: 40px 20px; }
+      footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <div class="logo-mark">cGc</div>
+      <div class="logo-name">Catherine Gaeun Choi</div>
+    </a>
+    <a href="index.html#projects" class="nav-back">
+      <span class="arrow">←</span> Back to work
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="cs-hero">
+    <div class="cs-label">02 — Particpatory Action Research (PAR)</div>
+    <h1 class="cs-title">House of Technology</h1>
+    <div class="cs-meta">
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Role</span>
+        <span class="cs-meta-value">UX Designer & Researcher</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Timeline</span>
+        <span class="cs-meta-value">2023 – 2024</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Platform</span>
+        <span class="cs-meta-value">Tangible Object</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Tools</span>
+        <span class="cs-meta-value">Figma · Adobe Creative Cloud ·</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Focus</span>
+        <span class="cs-meta-value">Participatory Action Research (PAR) · Interaction Design · Tangible Design · Human-Centred Design </span>
+      </div>
+    </div>
+    <p class="cs-summary">
+      A role-playing board game designed as an intergenerational play medium to mitigate digital divide.
+    </p>
+  </div>
+
+  <!-- NEXT PROJECT -->
+  <div class="cs-next">
+    <div>
+      <p class="cs-next-label">Next project</p>
+      <h2 class="cs-next-title">Paxton Green Time Bank</h2>
+    </div>
+    <a href="paxton-green-time-bank.html" class="cs-next-link">
+      View case study →
+    </a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-copy">© 2026 Catherine Gaeun Choi. All rights reserved.</div>
+    <div class="footer-socials">
+      <a href="https://www.linkedin.com/in/gaeun-choi-cath0303">LinkedIn</a>
+      <a href="https://www.behance.net/gaeunchoi_cath">Behance</a>
+    </div>
+  </footer>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    const isMobileWidth = () => window.innerWidth <= 600;
+
+    document.addEventListener('mousemove', e => {
+      if (isMobileWidth()) return;
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top  = e.clientY + 'px';
+    });
+
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => { if (!isMobileWidth()) cursor.classList.add('hover'); });
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      const mobile = window.innerWidth <= 600;
+      const tablet = window.innerWidth <= 900;
+      const px = mobile ? '20px' : tablet ? '28px' : '48px';
+      const py = window.scrollY > 60 ? '12px' : mobile ? '16px' : tablet ? '18px' : '22px';
+      nav.style.padding = `${py} ${px}`;
+    });
+  </script>
+
+</body>
+</html>
